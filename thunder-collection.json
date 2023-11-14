@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "SZF API",
-    "dateExported": "2023-11-14T08:16:10.374Z",
+    "dateExported": "2023-11-14T08:36:00.566Z",
     "version": "1.1",
     "folders": [],
     "requests": [
@@ -10,11 +10,11 @@
             "colId": "ca53ef1a-9b39-44f2-860f-13bf191f5615",
             "containerId": "",
             "name": "GET All trainings",
-            "url": "localhost:3333/api/trainings",
+            "url": "{{SZF_BASE_URL}}/api/trainings",
             "method": "GET",
             "sortNum": 10000,
             "created": "2023-11-14T08:09:56.798Z",
-            "modified": "2023-11-14T08:10:10.270Z",
+            "modified": "2023-11-14T08:35:27.617Z",
             "headers": [],
             "params": [],
             "tests": []
@@ -76,11 +76,11 @@
             "colId": "ca53ef1a-9b39-44f2-860f-13bf191f5615",
             "containerId": "",
             "name": "DELETE Delete  by id",
-            "url": "localhost:3333/api/trainings/1",
+            "url": "{{SZF_BASE_URL}}/api/trainings/1",
             "method": "DELETE",
             "sortNum": 50000,
             "created": "2023-11-14T08:15:35.383Z",
-            "modified": "2023-11-14T08:15:43.813Z",
+            "modified": "2023-11-14T08:35:52.464Z",
             "headers": [],
             "params": [],
             "tests": []
