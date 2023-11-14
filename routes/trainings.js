@@ -1,28 +1,18 @@
 const express = require('express');
+const {
+  getTraining,
+  getTrainings,
+  createTraining,
+  updateTraining,
+  deleteTraining,
+} = require('../controllers/trainings');
+
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  res.status(200).json({ success: true, msg: 'Show all trainings ' });
-});
-
-router.get('/:id', (req, res) => {
-  res.status(200).json({ success: true, msg: `Get training ${req.params.id}` });
-});
-
-router.post('/', (req, res) => {
-  res.status(200).json({ success: true, msg: 'Create new training' });
-});
-
-router.put('/:id', (req, res) => {
-  res
-    .status(200)
-    .json({ success: true, msg: `Update training ${req.params.id}` });
-});
-
-router.delete('/:id', (req, res) => {
-  res
-    .status(200)
-    .json({ success: true, msg: `Delete training ${req.params.id}` });
-});
+router.get('/', getTrainings);
+router.get('/:id', getTraining);
+router.post('/', createTraining);
+router.put('/:id', updateTraining);
+router.delete('/:id', deleteTraining);
 
 module.exports = router;
