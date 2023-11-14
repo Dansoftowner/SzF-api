@@ -1,6 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-const trainings = require('trainings');
+const trainings = require('./routes/trainings');
 
 const app = express();
 app.use('/api/trainings', trainings);
