@@ -4,6 +4,8 @@ const trainings = require('./routes/trainings');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 
+mongoose.set('strictQuery', true);
+
 mongoose
   .connect(process.env.SZF_MONGO_URI)
   .then(() => console.log('Database connection is established'))
