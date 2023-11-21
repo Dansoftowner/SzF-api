@@ -2,6 +2,12 @@ require('dotenv').config();
 const express = require('express');
 const trainings = require('./routes/trainings');
 const morgan = require('morgan');
+const mongoose = require('mongoose');
+
+mongoose
+  .connect(process.env.SZF_MONGO_URI)
+  .then(() => console.log('Database connection is established'))
+  .catch((err) => console.error(err));
 
 const app = express();
 
