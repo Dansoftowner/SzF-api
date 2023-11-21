@@ -1,3 +1,5 @@
+const Training = require('../models/training');
+
 exports.getTrainings = (req, res, next) => {
   res
     .status(200)
@@ -8,8 +10,13 @@ exports.getTraining = (req, res, next) => {
   res.status(200).json({ success: true, msg: `Get training ${req.params.id}` });
 };
 
-exports.createTraining = (req, res, next) => {
-  res.status(200).json({ success: true, msg: 'Create new training' });
+exports.createTraining = async (req, res, next) => {
+  try {
+    const training = await Training.create(req.body);
+    res.status(201).json({ success: true, data: training });
+  } catch (error) {
+    res.status(400).json({ success: false });
+  }
 };
 
 exports.updateTraining = (req, res, next) => {
