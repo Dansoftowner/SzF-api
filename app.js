@@ -13,6 +13,8 @@ mongoose
 
 const app = express();
 
+app.use(express.json());
+
 const logger = (req, res, next) => {
   req.hello = 'Hello World';
   next();
