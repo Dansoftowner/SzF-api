@@ -29,7 +29,7 @@ exports.createTraining = async (req, res, next) => {
   try {
     const training = await Training.create(req.body);
     res.status(201).json({ success: true, data: training });
-  } catch (error) {
+  } catch (err) {
     next(err);
   }
 };
