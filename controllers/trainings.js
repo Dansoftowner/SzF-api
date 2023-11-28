@@ -33,14 +33,33 @@ exports.createTraining = async (req, res, next) => {
   }
 };
 
-exports.updateTraining = (req, res, next) => {
-  res
-    .status(200)
-    .json({ success: true, msg: `Update training ${req.params.id}` });
+exports.updateTraining = async (req, res, next) => {
+  try {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id))
+      return res.status(400).json({ success: false });
+
+    const training = await Training.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    if (!training) return res.status(404).json({ success: false });
+
+    res.status(200).json({ success: true, data: training });
+  } catch (err) {
+    res.status(400).json({ success: false });
+  }
 };
 
-exports.deleteTraining = (req, res, next) => {
-  res
-    .status(200)
-    .json({ success: true, msg: `Delete training ${req.params.id}` });
+exports.deleteTraining = async (req, res, next) => {
+  try {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id))
+      return res.status(400).json({ success: false });
+
+    const training = await Training.findByIdAndDelete(req.params.id);
+    if (!training) return res.status(404).json({ success: false });
+
+    res.status(200).json({ success: true, data: training });
+  } catch (err) {
+    console.error(err);
+    res.status(400).json({ success: false });
+  }
 };
