@@ -3,9 +3,21 @@ const Training = require('../models/training');
 const ErrorResponse = require('../utils/errorResponse');
 
 exports.getTrainings = async (req, res, next) => {
+  let queryStr = JSON.stringify(req.query);
+  // Kicseréljük a query-ben lévő lte sztringet $lte-re
+  queryStr = queryStr.replace(
+    /\b(gt|gte|lt|lte|in)\b/g,
+    (match) => `$${match}`,
+  );
+
   try {
-    const trainings = await Training.find({});
-    res.status(200).json(trainings);
+    const trainings = await Training.find(JSON.parse(queryStr));
+
+    res.status(200).json({
+      success: true,
+      count: trainings.length,
+      data: trainings,
+    });
   } catch (err) {
     next(err);
   }
