@@ -19,6 +19,23 @@ exports.getTrainings = async (req, res, next) => {
       .skip(startIndex)
       .limit(limit);
 
+    const total = await Training.estimatedDocumentCount()
+    const endIndex = page * limit - 1;
+
+    const pagination = {};
+    if (startIndex > 0) {
+      pagination.prev = {
+        page: page - 1,
+        limit,
+      };
+    }
+    if (endIndex < total) {
+      pagination.next = {
+        page: page + 1,
+        limit,
+      };
+    }
+
     res.status(200).json({
       success: true,
       count: trainings.length,
