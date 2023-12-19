@@ -10,8 +10,14 @@ exports.getTrainings = async (req, res, next) => {
     (match) => `$${match}`,
   );
 
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 2;
+  const startIndex = (page - 1) * limit;
+
   try {
-    const trainings = await Training.find(JSON.parse(queryStr));
+    const trainings = await Training.find(JSON.parse(queryStr))
+      .skip(startIndex)
+      .limit(limit);
 
     res.status(200).json({
       success: true,
